@@ -11,12 +11,18 @@ class App extends Component {
     this.state = {
       searchString: ''
     };
+
+    this.handleSearchString = this.handleSearchString.bind(this);
   }
 
+  handleSearchString = (searchString) => {
+    this.setState({ searchString })
+  }
+  
   render() { 
     return (
       <div className="App">
-        <Navbar searchString={this.state.searchString}/>
+        <Navbar searchString={this.handleSearchString}/>
         <div className="container mt-10">
           <div className="row">
             <RecipeItem />
