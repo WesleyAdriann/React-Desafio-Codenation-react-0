@@ -20,32 +20,44 @@ class App extends Component {
   }
 
   render() {
+    let cont = 0;
+    
     return (
       <div className="App">
         <Navbar searchString={this.handleSearchString}/>
         <div className="container mt-10">
           <div className="row">
-            {
-              this.recipes.map((info, i) => {
-              
-              if(
-                  (info.title.toLowerCase().includes(this.state.searchString.toLowerCase())) || 
-                  (info.ingredients.toLowerCase().includes(this.state.searchString.toLowerCase()))
-                ) {
-                return (
-                  <RecipeItem 
-                    key={i}
-                    title={info.title}
-                    thumbnail={info.thumbnail}
-                    ingredients={info.ingredients}
-                    href={info.href}
-                    // index={info.title.indexOf(this.state.searchString)}
-                    // search={this.state.searchString.length}
-                  />
-                )
-              } 
-            }) 
-            }
+            
+              { 
+                this.recipes.map((info, i) => {
+                if(
+                    (info.title.toLowerCase().includes(this.state.searchString.toLowerCase())) || 
+                    (info.ingredients.toLowerCase().includes(this.state.searchString.toLowerCase()))
+                  ) {
+                  return (
+                    <RecipeItem 
+                      key={i}
+                      title={info.title}
+                      thumbnail={info.thumbnail}
+                      ingredients={info.ingredients}
+                      href={info.href}
+                      // index={info.title.indexOf(this.state.searchString)}
+                      // search={this.state.searchString.length}
+                    />
+                  )
+                } else {
+                  cont++
+                }
+
+                if(cont == 20) {
+                  return (
+                    <div className="col">
+                      <p className="h1">No results to show </p>
+                    </div>
+                  )
+                }
+              }) 
+              }
             
           </div>
         </div>
