@@ -15,20 +15,31 @@ class App extends Component {
     this.handleSearchString = this.handleSearchString.bind(this);
   }
 
-  handleSearchString = (searchString) => {
+  componentDidMount() {
+    console.log(recipes.results)
+  }
+
+  handleSearchString = searchString => {
     this.setState({ searchString })
   }
-  
+
   render() { 
     return (
       <div className="App">
         <Navbar searchString={this.handleSearchString}/>
         <div className="container mt-10">
           <div className="row">
-            <RecipeItem />
-            <RecipeItem />
-            <RecipeItem />
-            <RecipeItem />
+            {recipes.results.map((info, i) => {
+              return (
+                <RecipeItem 
+                  key={i}
+                  title={info.title}
+                  thumbnail={info.thumbnail}
+                  ingredients={info.ingredients}
+                  href={info.href}
+                />
+              )
+            })}
           </div>
         </div>
       </div>
