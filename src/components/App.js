@@ -60,7 +60,7 @@ class App extends Component {
 
                   if(cont === 20) {
                     return (
-                      <div className="col" key={cont}>
+                      <div className="col mt-5" key={cont}>
                         <p className="h1">No results to show </p>
                       </div>
                     )
