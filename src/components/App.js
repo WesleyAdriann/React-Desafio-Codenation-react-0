@@ -13,10 +13,15 @@ class App extends Component {
     };
 
     this.handleSearchString = this.handleSearchString.bind(this);
+    this.markTitle = this.markTitle.bind(this);
   }
 
   handleSearchString = searchString => {
     this.setState({ searchString })
+  }
+
+  markTitle = () => {
+
   }
 
   render() {
@@ -31,27 +36,31 @@ class App extends Component {
               { 
                 this.recipes.map((info, i) => {
                 if(
-                    (info.title.toLowerCase().includes(this.state.searchString.toLowerCase())) || 
+                    (this.state.searchString === '') ||
+                    (info.title.toLowerCase().includes(this.state.searchString.toLowerCase())) 
+                    || 
                     (info.ingredients.toLowerCase().includes(this.state.searchString.toLowerCase()))
                   ) {
+                  
                   return (
                     <RecipeItem 
                       key={i}
                       title={info.title}
+                      titleArr={Array.from(info.title)}
                       thumbnail={info.thumbnail}
                       ingredients={info.ingredients}
                       href={info.href}
                       // index={info.title.indexOf(this.state.searchString)}
-                      // search={this.state.searchString.length}
+                      searchString={this.state.searchString}
                     />
                   )
                 } else {
                   cont++
                 }
 
-                if(cont == 20) {
+                if(cont === 20) {
                   return (
-                    <div className="col">
+                    <div className="col" key={cont}>
                       <p className="h1">No results to show </p>
                     </div>
                   )

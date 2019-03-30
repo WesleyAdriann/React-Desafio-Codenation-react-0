@@ -8,11 +8,25 @@ const RecipeItem = (props) => (
             </a>
             <div className="card-body">
                 <h5 className="card-title">
-                    {/* {props.title.substr(0, props.index)}
-                    <mark>{props.title.substr(props.index, props.search)}</mark>
-                    {props.title.substr(props.search+props.index, props.title.length)}
-                    <br/> */}
-                    {props.title}
+                    {
+                        props.titleArr.map((char, i) => {
+                        console.log(props.searchString)
+                        if(props.title.toLowerCase().includes(props.searchString.toLowerCase()) && (props.searchString != '')) {
+                            let index = props.title.toLowerCase().indexOf(props.searchString.toLowerCase()); 
+                            console.log(index);
+                            if((i >= index) && (i <= props.searchString.length+index - 1)) {
+                                    return (
+                                        <mark>{char}</mark>
+                                    )
+                            }else {
+                                return char
+                            }
+                        } else {    
+                            return (char);
+                        }
+                    })
+                    }
+       
                 </h5>
                 <p className="card-text">
                     <strong>Ingredients: </strong>{props.ingredients}
