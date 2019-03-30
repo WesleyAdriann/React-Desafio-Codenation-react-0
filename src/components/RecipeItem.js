@@ -11,25 +11,42 @@ const RecipeItem = (props) => (
                     {
                         props.titleArr.map((char, i) => {
                         console.log(props.searchString)
-                        if(props.title.toLowerCase().includes(props.searchString.toLowerCase()) && (props.searchString != '')) {
+                        if(props.title.toLowerCase().includes(props.searchString.toLowerCase()) && (props.searchString !== '')) {
                             let index = props.title.toLowerCase().indexOf(props.searchString.toLowerCase()); 
-                            console.log(index);
                             if((i >= index) && (i <= props.searchString.length+index - 1)) {
-                                    return (
-                                        <mark>{char}</mark>
-                                    )
+                                return (
+                                    <mark>{char}</mark>
+                                )
                             }else {
                                 return char
                             }
                         } else {    
                             return (char);
                         }
-                    })
+                        })
                     }
        
                 </h5>
                 <p className="card-text">
-                    <strong>Ingredients: </strong>{props.ingredients}
+                    <strong>Ingredients: </strong>
+                    {
+                        props.ingredientsArr.map((char, i) => {
+                            if(props.ingredients.toLowerCase().includes(props.searchString.toLowerCase()) && (props.searchString !== '')) {
+                                let index = props.ingredients.toLowerCase().indexOf(props.searchString.toLowerCase());
+                                if((i >= index) && (i <= props.searchString.length+index -1)) {
+                                    return (
+                                        <mark>{char}</mark>
+                                    )
+                                } else {
+                                    return char
+                                }
+                            } else {
+                                return (char);
+                            }
+                        })
+                    }
+                    {props.ingredients}
+
                 </p>
             </div>
         </div>

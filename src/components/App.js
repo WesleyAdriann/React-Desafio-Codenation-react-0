@@ -35,37 +35,37 @@ class App extends Component {
             
               { 
                 this.recipes.map((info, i) => {
-                if(
-                    (this.state.searchString === '') ||
-                    (info.title.toLowerCase().includes(this.state.searchString.toLowerCase())) 
-                    || 
-                    (info.ingredients.toLowerCase().includes(this.state.searchString.toLowerCase()))
-                  ) {
-                  
-                  return (
-                    <RecipeItem 
-                      key={i}
-                      title={info.title}
-                      titleArr={Array.from(info.title)}
-                      thumbnail={info.thumbnail}
-                      ingredients={info.ingredients}
-                      href={info.href}
-                      // index={info.title.indexOf(this.state.searchString)}
-                      searchString={this.state.searchString}
-                    />
-                  )
-                } else {
-                  cont++
-                }
+                  if(
+                      (this.state.searchString === '') ||
+                      (info.title.toLowerCase().includes(this.state.searchString.toLowerCase())) 
+                      || 
+                      (info.ingredients.toLowerCase().includes(this.state.searchString.toLowerCase()))
+                    ) {
+                    
+                    return (
+                      <RecipeItem 
+                        key={i}
+                        title={info.title}
+                        titleArr={Array.from(info.title)}
+                        thumbnail={info.thumbnail}
+                        ingredients={info.ingredients}
+                        ingredientsArr={Array.from(info.ingredients)}
+                        href={info.href}
+                        searchString={this.state.searchString}
+                      />
+                    )
+                  } else {
+                    cont++
+                  }
 
-                if(cont === 20) {
-                  return (
-                    <div className="col" key={cont}>
-                      <p className="h1">No results to show </p>
-                    </div>
-                  )
-                }
-              }) 
+                  if(cont === 20) {
+                    return (
+                      <div className="col" key={cont}>
+                        <p className="h1">No results to show </p>
+                      </div>
+                    )
+                  }
+                }) 
               }
             
           </div>
